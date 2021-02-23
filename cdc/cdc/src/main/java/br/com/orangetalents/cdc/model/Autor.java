@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -18,16 +19,17 @@ import javax.validation.constraints.Size;
 @Table(name="tb_autor")
 public class Autor {
 	
-	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@NotEmpty @NotNull 
+	@NotBlank
 	private String name;
 	
-	@Email @NotEmpty @NotNull @Column(unique=true)
+	@Email @NotBlank @Column(unique=true)
 	private String email;
 	
-	@NotEmpty @NotNull @Size(max=400)
+	@NotBlank @Size(max=400)
 	private String description;
 	
 	@NotNull
