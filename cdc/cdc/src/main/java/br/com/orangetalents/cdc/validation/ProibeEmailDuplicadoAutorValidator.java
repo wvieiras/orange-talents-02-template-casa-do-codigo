@@ -34,7 +34,7 @@ public class ProibeEmailDuplicadoAutorValidator implements Validator {
 
 		if(possivelAutor.isPresent()) {
 			errors.rejectValue("Email", null, 
-				"Já existe um outro mesmo email cadastro"
+				"Já existe um outro mesmo email cadastrado"
 				+ request.getEmail());
 		}
 	}
