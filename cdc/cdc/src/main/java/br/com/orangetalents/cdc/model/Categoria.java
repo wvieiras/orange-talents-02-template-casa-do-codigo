@@ -9,6 +9,7 @@ import javax.validation.constraints.NotBlank;
 
 
 
+
 @Entity
 public class Categoria {
 
@@ -16,7 +17,7 @@ public class Categoria {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@NotBlank @Column(unique = true)
+	@NotBlank @Column(unique = true) 
 	private String nome;
 	
 	//Getters

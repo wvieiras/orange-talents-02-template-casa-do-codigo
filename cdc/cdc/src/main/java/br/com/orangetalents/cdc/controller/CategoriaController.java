@@ -15,24 +15,24 @@ import br.com.orangetalents.cdc.model.Categoria;
 import br.com.orangetalents.cdc.repository.CategoriaRepository;
 import br.com.orangetalents.cdc.validation.ProibeNomeDuplicadoCategoriaValidator;
 
-
 @RestController
 public class CategoriaController {
-	
+
 	@Autowired
 	private CategoriaRepository repository;
-	
+
 	@Autowired
 	private ProibeNomeDuplicadoCategoriaValidator proibeNomeDuplicadoCategoriaValidator;
-	
+
 	@InitBinder
-	public void init(WebDataBinder binder){
+
+	public void init(WebDataBinder binder) {
 		binder.addValidators(proibeNomeDuplicadoCategoriaValidator);
 	}
 
-	@PostMapping(value  = "/categoria")
-	public ResponseEntity<Categoria> post (@RequestBody @Valid Categoria categoria) {
+	@PostMapping(value = "/categoria")
+	public ResponseEntity<Categoria> post(@RequestBody @Valid Categoria categoria) {
 		return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(categoria));
 	}
-	
+
 }
