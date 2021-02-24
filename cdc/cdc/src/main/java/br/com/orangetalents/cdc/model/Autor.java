@@ -2,43 +2,56 @@ package br.com.orangetalents.cdc.model;
 
 import java.time.LocalDateTime;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 
 @Entity
-@Table(name="tb_autor")
 public class Autor {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@NotBlank
 	private String name;
 	
-	@Email @NotBlank @Column(unique=true)
 	private String email;
-	
-	@NotBlank @Size(max=400)
+
 	private String description;
-	
-	@NotNull
+
 	private LocalDateTime dateCreate = LocalDateTime.now();
 	
+	@Deprecated
+	public Autor() {
+		
+	}
 	
+	public Autor(@NotBlank String name, @Email @NotBlank String email,
+			@NotBlank @Size(max = 400) String description) {
+		
+		this.name = name;
+		this.email = email;
+		this.description = description;
+	}
+
+	@Override
+	public String toString() {
+		return "Autor [id=" + id + ", name=" + name + ", email=" + email + ", description=" + description
+				+ ", dateCreate=" + dateCreate + "]";
+	}
+
 	//Getters
 	public Long getId() {
 		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getName() {
@@ -53,8 +66,6 @@ public class Autor {
 		return description;
 	}
 
-	public LocalDateTime getDateCreate() {
-		return dateCreate;
-	}
+
 	
 }
